@@ -1,0 +1,17 @@
+{
+  "name": "backbone-sockets",
+  "version": "0.0.0",
+  "main": "app/index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~1.8.0",
+    "lodash": "~1.1.1",
+    "backbone": "~1.0.0",
+    "sass-bootstrap": "~2.3.1",
+    "requirejs": "~2.1.5"
+  }
+}

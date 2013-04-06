@@ -1,0 +1,24 @@
+{
+  "name": "backbone-sockets",
+  "version": "0.0.0",
+  "description": "Try to make realtime webapp with socket.io, redis and BackboneJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "lol"
+  },
+  "author": "rhannequin",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "~0.8.2",
+    "socket.io": "~0.9.14",
+    "bower": "~0.8.6",
+    "express": "~3.1.1"
+  },
+  "devDependencies": {
+    "compass": "~0.1.0"
+  }
+}
