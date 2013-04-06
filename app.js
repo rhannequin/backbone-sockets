@@ -21,6 +21,15 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.get('/books', function (req, res) {
+  booksDb.find().toArray(function (err, books) {
+    if(err) {
+      return console.log(err);
+    }
+    return res.send(books);
+  });
+});
+
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
