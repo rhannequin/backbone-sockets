@@ -8,15 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "lol"
+    "url": "git@github.com:rhannequin/backbone-sockets.git"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
   },
   "author": "rhannequin",
   "license": "MIT",
   "dependencies": {
-    "redis": "~0.8.2",
     "socket.io": "~0.9.14",
     "bower": "~0.8.6",
-    "express": "~3.1.1"
+    "express": "~3.1.1",
+    "mongoskin": "~0.5.0"
   },
   "devDependencies": {
     "compass": "~0.1.0"
