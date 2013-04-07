@@ -9,8 +9,13 @@
       initialize: function (params) {
         this.socket = params.socket;
         this.defineEvents();
+        this.render();
         this.bookListView = new BookListView();
         this.bookListView.collection.reset(params.books);
+      },
+
+      render: function () {
+        this.$el.html('<h2>Book list</h2><div id="book-list"></div>');
       },
 
       defineEvents: function () {

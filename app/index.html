@@ -11,6 +11,13 @@
   <body>
     <h1>Backbone-Sockets</h1>
     <div id="main"></div>
+    <script id="book-list-template" type="text/x-template">
+      <ul>
+        <% _.each(books, function (book) { %>
+          <li><%= book.author %>: <em><a href="<%= book.url %>"><%= book.title %></a></li>
+        <% }); %>
+      </ul>
+    </script>
     <script id="require-js" data-main="assets/scripts/config" src="assets/components/requirejs/require.js"></script>
   </body>
 </html>

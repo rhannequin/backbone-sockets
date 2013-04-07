@@ -1,15 +1,27 @@
 (function () {
 
-  define(['jquery', 'backbone', 'collections/BookList'], function ($, Backbone, BookList) {
+  define([
+    'jquery',
+    'lodash',
+    'backbone',
+    'collections/BookList'
+  ], function ($, _, Backbone, BookList) {
 
     return Backbone.View.extend({
+
+      el: '#book-list',
+      template: _.template($('#book-list-template').text()),
 
       initialize: function () {
         var self = this;
         this.collection = new BookList();
         this.collection.on('reset', function () {
-          console.log('Reset collection', self.collection.toJSON());
+          self.render();
         });
+      },
+
+      render: function () {
+        this.$el.html(this.template({ books: this.collection.toJSON() }));
       }
 
     });
