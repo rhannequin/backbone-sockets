@@ -4,9 +4,9 @@
     baseUrl: 'assets/scripts/',
     deps: ['main'],
     paths: {
-      jquery:      '../components/jquery/jquery.min',
-      backbone:    '../components/backbone/backbone-min',
-      lodash:      '../components/lodash/lodash',
+      jquery:      'lib/jquery',
+      backbone:    'lib/backbone',
+      lodash:      'lib/lodash',
       'socket.io': '../../socket.io/socket.io'
     },
     shim: {
