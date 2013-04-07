@@ -3,8 +3,9 @@ var mongo        = require('mongoskin'),
     port         = 27017,
     params       = '?auto_reconnect=true',
     databaseName = 'books',
-    database     = mongo.db(url + ':' + port + params,
-                            { database: databaseName, safe: true }),
+    connection   = typeof MONGOLAB_URI !== 'undefined' ? MONGOLAB_URI : url + ':' + port + '/' + databaseName + params,
+    database     = mongo.db(connection,
+                            { safe: true }),
     booksDb      = database.collection('books');
 
 exports.database = database;
