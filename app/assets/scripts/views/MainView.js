@@ -6,9 +6,17 @@
 
       el: '#main',
 
-      initialize: function () {
+      initialize: function (params) {
+        this.socket = params.socket;
+        this.defineEvents();
         this.bookListView = new BookListView();
-        this.bookListView.collection.fetch();
+        this.bookListView.collection.reset(params.books);
+      },
+
+      defineEvents: function () {
+        this.socket.on('broadcast', function (data) {
+          console.log('Broadcast message: ', data);
+        });
       }
 
     });

@@ -39,7 +39,11 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
-  io.sockets.emit('this', { will: 'be received by everyone'});
+  io.sockets.emit('broadcast', 'New user connected');
+  booksDb.find().toArray(function (err, books) {
+    if(err) { return console.log(err); }
+    io.sockets.socket(socket.id).emit('books_list', books);
+  });
 });
 
 module.exports = app;

@@ -8,12 +8,14 @@
   ], function (io, $, Backbone, MainView) {
 
     var socket = new io.connect();
-    socket.on('connect', function() {
-      console.log('Socket.io connected');
-      var mainView = new MainView();
+    socket.on('connect', function () {
+      console.log('Welcome, Socket.io connected');
+    });
+    socket.on('books_list', function (books) {
+      var mainView = new MainView({ socket: socket, books: books });
     });
     socket.on('disconnect', function () {
-      console.log('Socket.io disconnected');
+      console.log('End, Socket.io disconnected');
     });
 
   });

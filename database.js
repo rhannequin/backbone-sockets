@@ -5,7 +5,7 @@ var mongo        = require('mongoskin'),
     databaseName = 'books',
     database     = mongo.db(url + ':' + port + params,
                             { database: databaseName, safe: true }),
-    booksDb      = database.collection('events');
+    booksDb      = database.collection('books');
 
 exports.database = database;
 exports.collections = { books: booksDb };
