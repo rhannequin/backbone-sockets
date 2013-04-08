@@ -10,9 +10,7 @@
     var socket = new io.connect();
     socket.on('connect', function () {
       console.log('Welcome, Socket.io connected');
-    });
-    socket.on('books_list', function (books) {
-      var mainView = new MainView({ socket: socket, books: books });
+      new MainView({ socket: socket });
     });
     socket.on('disconnect', function () {
       console.log('End, Socket.io disconnected');

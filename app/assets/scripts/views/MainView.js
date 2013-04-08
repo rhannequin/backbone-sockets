@@ -1,27 +1,40 @@
 (function () {
 
-  define(['jquery', 'backbone', 'views/BookListView'], function ($, Backbone, BookListView) {
+  define([
+    'jquery',
+    'lodash',
+    'backbone',
+    'views/BookListView'
+  ], function ($, _, Backbone, BookListView) {
 
     return Backbone.View.extend({
 
       el: '#main',
+      template: _.template($('#main-template').text()),
+
+      events: {
+        'submit form': 'addBook',
+      },
 
       initialize: function (params) {
         this.socket = params.socket;
         this.defineEvents();
         this.render();
         this.bookListView = new BookListView();
-        this.bookListView.collection.reset(params.books);
       },
 
       render: function () {
-        this.$el.html('<h2>Book list</h2><div id="book-list"></div>');
+        this.$el.html(this.template());
       },
 
       defineEvents: function () {
         this.socket.on('broadcast', function (data) {
           console.log('Broadcast message: ', data);
         });
+      },
+
+      addBook: function (e) {
+        e.preventDefault();
       }
 
     });

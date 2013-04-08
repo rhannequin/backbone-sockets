@@ -4,7 +4,8 @@
 
     return Backbone.Collection.extend({
 
-      model: Book
+      model: Book,
+      url: '/books'
 
     });
 
