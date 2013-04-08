@@ -30,6 +30,14 @@ app.get('/books', function (req, res) {
   });
 });
 
+app.post('/books', function (req, res) {
+  var book = req.body;
+  booksDb.insert(book, {safe: true}, function (err) {
+    if(err) { return console.log(err); }
+    return res.send(book);
+  });
+});
+
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
@@ -45,6 +53,13 @@ io.configure(function () {
 
 io.sockets.on('connection', function (socket) {
   io.sockets.emit('broadcast', 'New user connected');
+
+  socket.on('new_book', function (book) {
+    booksDb.insert(book, {safe: true}, function (err) {
+      if(err) { return console.log(err); }
+      return io.sockets.emit('new_book_created', book);
+    });
+  });
 });
 
 module.exports = app;
