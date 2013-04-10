@@ -11,7 +11,6 @@
     return Backbone.View.extend({
 
       el: '#book-list',
-      template:     _.template($('#book-list-template').text()),
       bookTemplate: _.template($('#book-template').text()),
 
       initialize: function () {
@@ -19,8 +18,8 @@
         this.render();
         collection.on('sync', this.render, this);
         collection.on('add', this.addBook, this);
+        // collection.on('remove', this.render, this);
         collection.fetch();
-        // var self = this;
         // var i = 10;
         // var interval = setInterval(function() {
         //   collection.add({ author: 'author', title: 'title', url: 'url' });
@@ -32,13 +31,12 @@
       },
 
       render: function () {
-        var result = [],
-            self   = this;
-        _.each(this.collection.models, function (book) {
+        var $ul = this.$el.find('ul');
+        $ul.html('');
+        _.map(this.collection.models, function (book) {
           var bookView = new BookView({ model: book });
-          result.push(bookView.render());
+          $ul.append(bookView.render());
         });
-        self.$el.html(self.template({ books: result.join('') }));
       },
 
       addBook: function (book) {

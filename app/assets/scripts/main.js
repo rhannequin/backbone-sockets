@@ -20,6 +20,9 @@
     socket.on('new_book_created', function (book) {
       self.mainView.trigger('new_book_created', book);
     });
+    socket.on('book_removed', function (book) {
+      self.mainView.trigger('book_removed', book);
+    });
 
   });
 

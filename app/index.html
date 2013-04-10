@@ -13,7 +13,7 @@
     <div id="main"></div>
     <script id="main-template" type="text/x-template">
       <h2>Book list</h2>
-      <div id="book-list"></div>
+      <div id="book-list"><ul></ul></div>
       <form>
         <h3>Add a book</h3>
         <label for="author">Author: </label>
@@ -25,13 +25,8 @@
         <input type="submit" class="btn btn primary" value="Add" />
       </form>
     </script>
-    <script id="book-list-template" type="text/x-template">
-      <ul>
-        <%= books %>
-      </ul>
-    </script>
     <script id="book-template" type="text/x-template">
-      <li><%= author %>: <em><a href="<%= url %>"><%= title %></a></li>
+      <li><%= author %>: <em><a href="<%= url %>"><%= title %></a> <i class="icon-remove"></i></li>
     </script>
     <script id="require-js" data-main="assets/scripts/config" src="assets/components/requirejs/require.js"></script>
   </body>

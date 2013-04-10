@@ -25,6 +25,17 @@
         this.on('new_book_created', function (book) {
           self.bookListView.collection.add(book);
         });
+        this.on('book_removed', function (attr) {
+          _.map(self.bookListView.collection.models, function (book) {
+            if (typeof book !== 'undefined' && book.get('title') === attr.title && book.get('author') === attr.author && book.get('url') === attr.url) {
+              self.bookListView.collection.remove(book);
+              self.bookListView.render();
+            }
+          });
+        });
+        this.bookListView.collection.on('removeBook', function (book) {
+          self.socket.emit('remove_book', book);
+        });
       },
 
       render: function () {

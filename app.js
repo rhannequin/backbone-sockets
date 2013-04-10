@@ -60,6 +60,12 @@ io.sockets.on('connection', function (socket) {
       return io.sockets.emit('new_book_created', book);
     });
   });
+  socket.on('remove_book', function (book) {
+    booksDb.remove({ title: book.title, author: book.author, url: book.url }, {safe: true}, function (err) {
+      if(err) { return console.log(err); }
+      return io.sockets.emit('book_removed', book);
+    });
+  });
 });
 
 module.exports = app;
