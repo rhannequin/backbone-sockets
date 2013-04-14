@@ -1,7 +1,14 @@
-var express  = require('express'),
-    http     = require('http'),
-    path     = require('path'),
-    db       = require('./database');
+var express = require('express'),
+    http    = require('http'),
+    path    = require('path'),
+    db      = require('./database');
+
+var espace = function (str) {
+  return str.replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+};
 
 var app     = express(),
     booksDb = db.collections.books;
@@ -55,7 +62,7 @@ io.sockets.on('connection', function (socket) {
   io.sockets.emit('broadcast', 'New user connected');
 
   socket.on('new_book', function (book) {
-    booksDb.insert(book, {safe: true}, function (err) {
+    booksDb.insert({ title: espace(book.title), author: espace(book.author), url: espace(book.url) }, {safe: true}, function (err) {
       if(err) { return console.log(err); }
       return io.sockets.emit('new_book_created', book);
     });
